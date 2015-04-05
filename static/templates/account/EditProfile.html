@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<!-- Button trigger modal -->
+{% load account_extras %}
+    <div class="container">
+        </br></br>
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked">
+                  <li role="presentation" class="active"><a href="{%url 'account:EditProfile'%}">Edit Profile</a></li>
+                  <li role="presentation"><a href="#">Photo</a></li>
+                  <li role="presentation"><a href="#">Trust and Verifications</a></li>
+                </ul>
+            </div>
+            <div class="col-md-7">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-body">
+                            <form  role="form" action="{%url 'account:EditProfile'%}" method="post">
+                                <fieldset>
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                        <div class="from-group">
+                                            {{ field.errors }}{{ field.label_tag }}
+                                            {{ field|addcss:"form-control"}}
+                                        </div>
+                                    {% endfor %}
+                                    </br>
+                                    <input type="submit" value="Save" class="btn btn-success"/>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+        <div class="container">
+		<!-- Place the search template code here -->
+              	</br>
+		<form action="{%url 'search:search'%}" method="get">
+            {{ form }}
+            <input type="submit" value="Search" class="btn btn-default"/>
+        </form>
+			   </br></br>
+		 {% if profile_list %}
+				 <div class="container">
+					<!-- row of columns -->
+					<div class="row">
+                 {% for profile in profile_list %}
+						<div class="col-lg-4 col-md-4">
+							<a href="{% url 'provider:profile' profile.id %}">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-4">
+												<img src="{{profile.photo}}" class="img-responsive img-circle" alt=" Responsive image" width="120" height="120">
+											</div>
+											<div class="col-xs-8 text-right">
+												<div class="row">
+													<div class="col-xs-4 col-xs-offset-7">
+													<div class="btn btn-default btn-lg ">42 SGD</div>
+													</br></br></br>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-xs-4 col-xs-offset-4">
+													<span class="label label-primary">30 Minutes</span>
+													</div>
+													<div class="col-xs-4">
+													<span class="label label-success">34 Reviews</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+               {% endfor %}						
+					</div>
+				</div>
+               {% else %}
+               <p>No provider is available.</p>
+               {% endif %}
+		</div>
+{% endblock %}
